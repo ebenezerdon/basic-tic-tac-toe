@@ -1,7 +1,7 @@
 const allCells = Array.from(document.getElementsByClassName('cell-value'));
 let userFilledCells = [];
 let computerFilledCells = [];
-const winCombinationArray = [
+let winCombinationArray = [
   [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8],
   [0, 3, 6], [1, 4, 7], [2, 5, 8], [2, 4, 6]
 ];
@@ -17,6 +17,7 @@ const playGame = cell => {
         if (winCombination.every(val => userFilledCells.includes(val))){
           alert('you win!');
           window.location.reload();
+          winCombinationArray = [];
         }
       });
     })();
@@ -40,6 +41,4 @@ const playGame = cell => {
   }
 };
 
-allCells.map(cell => {
-  cell.addEventListener('click', () => playGame(cell))
-});
+allCells.map(cell => cell.addEventListener('click', () => playGame(cell)));
